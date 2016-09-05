@@ -2,6 +2,14 @@
 
 from scrape import scrape_page
 
+import re
+
+try:
+    import pandas as pd
+    pandasImported = True
+except ImportError:
+    pandasImported = False
+
 BASE_URL = "http://finviz.com/quote.ashx?t="
 VALUE_NAMES_XPATH = '//*[@class="snapshot-td2-cp"]/text()'
 VALUES_XPATH = '//*[@class="snapshot-td2"]/b/text() | //*[@class="snapshot-td2"]/b/*/text()'
@@ -62,6 +70,50 @@ def get_all_statistics(ticker_symbol, page=None):
         return table
     else:
         return None
+
+def get_all_statistics_series(ticker_symbol):
+    """
+    Return pandas Series of ticker symbol. Try to convert to numeric.
+    """
+
+    if not pandasImported:
+        raise Exception("Pandas not installed.")
+
+    d = get_all_statistics(ticker_symbol)
+
+    new_dict = {}
+
+    for k,v in d.items():
+        if ('%' in v) and (v.index('%') == (len(v)-1)):
+            # percent
+            new_dict[k + '(%)'] = float(v[:-1])
+        elif (k == '52W Range'):
+            m = re.match('([0-9\.\-]+) - ([0-9\.\-]+)',v)
+            new_dict['52W Low'] = float(m.group(1))
+            new_dict['52W High'] = float(m.group(2))
+        else:
+            try:
+                # remove any commas
+                v = re.sub(',','',v)
+                v = re.sub('B','E9',v)  # expoentiate billions
+                v = re.sub('M','E6',v)
+                new_dict[k] = float(v)
+            except ValueError:
+                new_dict[k] = v
+            
+
+    return pd.Series(new_dict)
+
+def get_all_statistics_df(symbol_list):
+    """Return a dataframe for a list of symbols.
+    """
+    series = []
+    
+    for s in symbol_list:
+        series.append(get_all_statistics_series(s))
+
+    return pd.DataFrame(series,index=symbol_list)
+                    
 
 if __name__ == "__main__":
     # Test Cases
