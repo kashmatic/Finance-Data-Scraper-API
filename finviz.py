@@ -84,6 +84,8 @@ def get_all_statistics_series(ticker_symbol):
     new_dict = {}
 
     for k,v in d.items():
+        if v == None:
+            continue
         if ('%' in v) and (v.index('%') == (len(v)-1)):
             # percent
             new_dict[k + '(%)'] = float(v[:-1])
