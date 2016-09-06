@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
-from scrape import scrape_page
-
+from Scrapers import scrape
 import re
 
 try:
@@ -43,7 +42,7 @@ def get_statistic(ticker_symbol, stat_name, page=None):
     :return: the value of the interested financial statistic if it exists, otherwise None
     """
     if page is None:
-        page = scrape_page(BASE_URL + ticker_symbol)
+        page = scrape.scrape_page(BASE_URL + ticker_symbol)
 
     table = get_statistics_table(page)
 
@@ -62,7 +61,7 @@ def get_all_statistics(ticker_symbol, page=None):
     :return: a dictionary of all the financial statistics listed on a stock's finviz page, otherwise None
     """
     if page is None:
-        page = scrape_page(BASE_URL + ticker_symbol)
+        page = scrape.scrape_page(BASE_URL + ticker_symbol)
 
     table = get_statistics_table(page)
 
@@ -102,7 +101,7 @@ def get_all_statistics_series(ticker_symbol):
                 new_dict[k] = float(v)
             except ValueError:
                 new_dict[k] = v
-            
+
 
     return pd.Series(new_dict)
 
@@ -110,12 +109,12 @@ def get_all_statistics_df(symbol_list):
     """Return a dataframe for a list of symbols.
     """
     series = []
-    
+
     for s in symbol_list:
         series.append(get_all_statistics_series(s))
 
     return pd.DataFrame(series,index=symbol_list)
-                    
+
 
 if __name__ == "__main__":
     # Test Cases
