@@ -1,1 +1,6 @@
 .DS_Store
+.vagrant
+build/
+dist/
+Finance_Data_Scaper_API.egg-info/
+__pycache__/
