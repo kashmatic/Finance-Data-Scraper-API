@@ -98,6 +98,7 @@ def get_all_statistics_series(ticker_symbol):
                 v = re.sub(',','',v)
                 v = re.sub('B','E9',v)  # expoentiate billions
                 v = re.sub('M','E6',v)
+                v = re.sub('K','E3',v)
                 new_dict[k] = float(v)
             except ValueError:
                 new_dict[k] = v
