@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from Scrapers import scrape
+from scrapers.scrape import scrape_page
 import re
 
 try:
@@ -42,7 +42,7 @@ def get_statistic(ticker_symbol, stat_name, page=None):
     :return: the value of the interested financial statistic if it exists, otherwise None
     """
     if page is None:
-        page = scrape.scrape_page(BASE_URL + ticker_symbol)
+        page = scrape_page(BASE_URL + ticker_symbol)
 
     table = get_statistics_table(page)
 
@@ -61,7 +61,7 @@ def get_all_statistics(ticker_symbol, page=None):
     :return: a dictionary of all the financial statistics listed on a stock's finviz page, otherwise None
     """
     if page is None:
-        page = scrape.scrape_page(BASE_URL + ticker_symbol)
+        page = scrape_page(BASE_URL + ticker_symbol)
 
     table = get_statistics_table(page)
 

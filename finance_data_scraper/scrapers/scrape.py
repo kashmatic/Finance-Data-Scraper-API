@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from Scrapers import cache
+from scrapers import cache
 from requests import get
 from lxml import html
 
