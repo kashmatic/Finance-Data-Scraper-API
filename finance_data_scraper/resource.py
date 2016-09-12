@@ -1,6 +1,6 @@
 from flask import make_response, jsonify
 from flask_restful import reqparse, Resource
-from Scrapers import finviz, stocktwits, zacks
+from scrapers import finviz, stocktwits, zacks
 
 class API_Resource(Resource):
     """
