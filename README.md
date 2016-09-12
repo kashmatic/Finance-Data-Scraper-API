@@ -1,4 +1,4 @@
-Finance Data Scrapper API
+Finance Data Scraper API
 ======
 **Finance Data Scraper API** is a web-based RESTFul API that scrapes various financial websites.
 It is written in Python 3 and mainly  uses flask, tornado, requests, and lxml
