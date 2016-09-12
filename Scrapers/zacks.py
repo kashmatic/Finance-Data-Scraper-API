@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from scrape import scrape_page
+from Scrapers.scrape import scrape_page
 
 BASE_URL = "http://www.zacks.com/stock/quote/"
 RATING_XPATH = '//*[@id="premium_research"]/div/table/tbody/tr[1]/td/strong/text()'
