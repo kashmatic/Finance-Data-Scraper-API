@@ -23,7 +23,7 @@ Run the webserver:
 $ python3 webserver.py
 ```
 
-Then fire up your favorite browser, curl, or send a GET from your front-end app:
+Then fire up your favorite browser, curl, or send a HTTP GET request from your app:
 ```
 $ curl http://localhost:8080/finance/finviz/statistics/AAPL
 ```
