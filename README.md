@@ -18,17 +18,17 @@ And then cross your fingers ...
 
 Usage
 -----
-Run the webserver
+Run the webserver:
 ```
 $ python3 webserver.py
 ```
 
-Then fire up your favorite browser, curl, or call from your front-end app:
+Then fire up your favorite browser, curl, or send a GET from your front-end app:
 ```
-$ curl "localhost:8080/finance/finviz/statistics/AAPL"
+$ curl localhost:8080/finance/finviz/statistics/AAPL
 ```
 
-Expect a result like this:
+Expect a 200 OK Response with a body containing JSON result like this:
 ```
 {
   "52W High": "-13.02%",
@@ -104,7 +104,22 @@ Expect a result like this:
   "Volume": "45,002,637"
 }
 ```
-
+Or perhaps you just want Volume and Volatility:
+```
+$ curl http://localhost:8080/finance/finviz/statistics/AAPL?fields=Volume,Volatility
+{
+  "Volatility": "1.97% 1.25%",
+  "Volume": "45,002,637"
+}
+```
+Here is an example of getting StockTwits sentiment:
+```
+$ curl http://localhost:8080/finance/stocktwits/sentiment/AAPL
+{
+  "bearish": "42% Bearish",
+  "bullish": "58% Bullish"
+}
+```
 ### Disclaimer
 The scrapers are at the mercy of the respective financial websites as they may update their
 style sheets, layout, or even place the desired information behind pay-walls; they are bound
