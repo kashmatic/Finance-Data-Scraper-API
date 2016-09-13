@@ -25,7 +25,7 @@ $ python3 webserver.py
 
 Then fire up your favorite browser, curl, or send a GET from your front-end app:
 ```
-$ curl localhost:8080/finance/finviz/statistics/AAPL
+$ curl http://localhost:8080/finance/finviz/statistics/AAPL
 ```
 
 Expect a 200 OK Response with a body containing JSON result like this:
@@ -107,6 +107,8 @@ Expect a 200 OK Response with a body containing JSON result like this:
 Or perhaps you just want Volume and Volatility:
 ```
 $ curl http://localhost:8080/finance/finviz/statistics/AAPL?fields=Volume,Volatility
+```
+```
 {
   "Volatility": "1.97% 1.25%",
   "Volume": "45,002,637"
@@ -115,6 +117,8 @@ $ curl http://localhost:8080/finance/finviz/statistics/AAPL?fields=Volume,Volati
 Here is an example of getting StockTwits sentiment:
 ```
 $ curl http://localhost:8080/finance/stocktwits/sentiment/AAPL
+```
+```
 {
   "bearish": "42% Bearish",
   "bullish": "58% Bullish"
