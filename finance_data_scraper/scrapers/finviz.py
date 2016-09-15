@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 
 from scrapers.scrape import scrape_page
+# if you want to use this scraper without the RESTful api webservice then
+# change this import: from scrape import scrape_page
 import re
 
 try:
