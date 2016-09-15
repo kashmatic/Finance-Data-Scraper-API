@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import config
 
 try:
     import memcache
@@ -6,9 +7,9 @@ except ImportError:
     pass
 
 try:
-    MEMCACHE_SERVERS = ["127.0.0.1:11211"]
+    MEMCACHE_SERVERS = config.memcache_instances
     CACHE = memcache.Client(MEMCACHE_SERVERS, debug=0)
-    CACHE_TTL = 60
+    CACHE_TTL = config.cache_ttl if config.cache_ttl else 60
 except:
     CACHE = None
 

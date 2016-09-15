@@ -1,6 +1,6 @@
 TODO
 ======
-* setup.cfg to clean up a lot of the global variables
+* config.cfg to clean up a lot of the global variables
 * Travis CI and unit tests for testing if and when scrapers break
 * SSL/TLS support
 * Swagger file

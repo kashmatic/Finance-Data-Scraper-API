@@ -1,6 +1,9 @@
 #!/usr/bin/python3
 
 from scrapers.scrape import scrape_page
+# if you want to use this scraper without the RESTful api webservice then
+# change this import: from scrape import scrape_page
+
 
 BASE_URL = "http://stocktwits.com/symbol/"
 BULLISH_SENTIMENT_XPATH = '//*[@id="sentiment-chart"]/div/ul/li[1]/span/text()'
