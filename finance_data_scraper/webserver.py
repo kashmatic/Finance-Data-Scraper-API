@@ -9,6 +9,7 @@ from api import app
 
 port = config.tornado_port
 
+print("Starting ... go get that alpha!")
 http_server = HTTPServer(WSGIContainer(app))
 http_server.listen(port)
 IOLoop.instance().start()

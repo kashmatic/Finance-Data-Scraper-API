@@ -16,11 +16,19 @@ $ sudo python3 setup.py install
 ```
 And then cross your fingers ...
 
+Or Alternatively if you have Docker installed, build from the provided Dockerfile and run!.
+```
+$ docker build -t finance_data_scraper_api - < Dockerfile
+$ docker run --net="host" -it finance_data_scraper_api
+Starting ... go get that alpha!
+```
+
 Usage
 -----
 Run the webserver:
 ```
 $ python3 webserver.py
+Starting ... go get that alpha!
 ```
 
 Then fire up your favorite browser, curl, or send a HTTP GET request from your app:
