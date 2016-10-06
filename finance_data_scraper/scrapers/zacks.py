@@ -7,8 +7,9 @@ from scrapers.scrape import scrape_page
 BASE_URL = "http://www.zacks.com/stock/quote/"
 RATING_XPATH = '//*[@id="premium_research"]/div/table/tbody/tr[1]/td/strong/text()'
 PEERS_XPATH = '//*[@id="stock_industry_analysis"]/table/tbody/tr/td[2]/a/span/text()'
-STYLE_SCORES_XPATH = '//*[@id="quote_ribbon_v2"]/div[1]/div[3]/div[2]/div[2]/p/span/text()'
+STYLE_SCORES_XPATH = '//*[@id="premium_research"]/div/table/tbody/tr[3]/th/p/span/text()'
 STYLES = ["Value", "Growth", "Momentum", "VGM"]
+INDUSTRY_RANK_XPATH = '//*[@id="premium_research"]/div/table/tbody/tr[2]/td/a/text()'
 
 def get_rating(ticker_symbol, page=None):
     """
@@ -70,6 +71,23 @@ def get_style_scores(ticker_symbol, page=None):
         return None
     else:
         return dict(zip(STYLES, scores))
+
+def get_industry_rank(ticker_symbol, page=None):
+    """
+    Gets the Zacks' Industry Rank of the target ticker symbol.
+    :param ticker_symbol: The ticker symbol of the interested stock (e.g., "AAPL", "GOOG", "MSFT")
+    :param page: html tree structure based on the html markup of the scraped website
+    :return: a string of the industry rank 
+    """
+    if page is None:
+        page = scrape_page(BASE_URL + ticker_symbol)
+
+    industry_rank = page.xpath(INDUSTRY_RANK_XPATH)
+
+    if not industry_rank:
+        return None
+    else:
+        return industry_rank[0]
 
 if __name__ == "__main__":
     # Test cases

@@ -134,8 +134,10 @@ class Zacks(API_Resource):
             response = self.get_rating(ticker_symbol)
         elif service == "peers":
             response = self.get_peers(ticker_symbol)
-        elif service == "stylescores":
+        elif service == "stylescore":
             response = self.get_style_scores(ticker_symbol)
+        elif service == "industryrank":
+            response = self.get_industry_rank(ticker_symbol)
 
         return response
 
@@ -165,9 +167,20 @@ class Zacks(API_Resource):
         """
         Helper function for the style scores service
         :param ticker_symbol: The ticker symbol of the interested stock (e.g., "AAPL", "GOOG", "MSFT")
-        :return: returns a 200 HTTP response along with JSON peers payload, otherwise returns a 404 response
+        :return: returns a 200 HTTP response along with JSON style scores payload, otherwise returns a 404 response
         """
         response = {}
         response["style scores"] = zacks.get_style_scores(ticker_symbol)
 
         return API_Resource.json(response) if response["style scores"] else API_Resource.error(404)
+
+    def get_industry_rank(self, ticker_symbol):
+        """
+        Helper function for the style scores service
+        :param ticker_symbol: The ticker symbol of the interested stock (e.g., "AAPL", "GOOG", "MSFT")
+        :return: returns a 200 HTTP response along with JSON industry rank payload, otherwise returns a 404 response
+        """
+        response = {}
+        response["industry rank"] = zacks.get_industry_rank(ticker_symbol)
+
+        return API_Resource.json(response) if response["industry rank"] else API_Resource.error(404)
