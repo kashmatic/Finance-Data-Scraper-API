@@ -5,7 +5,7 @@ from scrapers.scrape import scrape_page
 # change this import: from scrape import scrape_page
 
 
-BASE_URL = "http://stocktwits.com/symbol/"
+BASE_URL = "https://stocktwits.com/symbol/"
 BULLISH_SENTIMENT_XPATH = '//*[@id="sentiment-chart"]/div/ul/li[1]/span/text()'
 BEARISH_SENTIMENT_XPATH = '//*[@id="sentiment-chart"]/div/ul/li[2]/span/text()'
 

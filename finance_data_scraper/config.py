@@ -21,18 +21,21 @@ config.readfp(config_file)
 
 # Tornado port
 DEFAULT = 8080
-tornado_port = config.get("tornado", "port")
-tornado_port = DEFAULT if tornado_port is None else tornado_port
+# tornado_port = config.get("tornado", "port")
+# tornado_port = DEFAULT if tornado_port is None else tornado_port
+tornado_port = DEFAULT
 
 # Memcache list of servers in hostname:port format
 DEFAULT = ["127.0.0.1:11211"]
-memcache_instances = []
-for instance in config.items("memcache"):
-    if "instance" in instance[0]:
-        memcache_instances.append( str(instance[1]) )
-memcache_instances = DEFAULT if memcache_instances is None else memcache_instances
+# memcache_instances = []
+# for instance in config.items("memcache"):
+#     if "instance" in instance[0]:
+#         memcache_instances.append( str(instance[1]) )
+# memcache_instances = DEFAULT if memcache_instances is None else memcache_instances
+memcache_instances = DEFAULT
 
 # Memcache time-to-live
 DEFAULT = 60
-cache_ttl = int( config.get("memcache", "cache time-to-live") )
-cache_ttl = DEFAULT if cache_ttl is None else cache_ttl
+# cache_ttl = int( config.get("memcache", "cache time-to-live") )
+# cache_ttl = DEFAULT if cache_ttl is None else cache_ttl
+cache_ttl = DEFAULT

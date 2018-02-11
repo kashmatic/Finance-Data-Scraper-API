@@ -5,3 +5,4 @@ dist/
 Finance_Data_Scaper_API.egg-info/
 __pycache__/
 *.pyc
+project/
